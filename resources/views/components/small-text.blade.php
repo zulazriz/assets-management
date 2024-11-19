@@ -1,0 +1,1 @@
+<small style="font-size: 12px;  display: block;">{{ $text }}</small>
