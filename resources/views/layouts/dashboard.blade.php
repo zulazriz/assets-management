@@ -5,13 +5,12 @@
         <meta charset="utf-8">
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-        <title>Cosec | @yield('title')</title>
+        <title>@yield('title')</title>
         <meta content="" name="description">
         <meta content="" name="keywords">
 
         <!-- Favicons -->
-        <link href={{ url('./assets/img/logo.jpg') }} rel="icon">
-        <link href={{ url('/assets/img/apple-touch-icon.png') }} rel="apple-touch-icon">
+        <link href={{ url('/assets/img/icon-event-tech.png') }} rel="icon">
 
         <!-- Google Fonts -->
         <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -64,33 +63,47 @@
         <div>
             <!-- ======= Header ======= -->
             <header id="header" class="header fixed-top d-flex align-items-center">
-                <div class="d-flex align-items-center justify-content-between">
-                    <a href="#" class="logo d-flex align-items-center">
-                        <img src="{{ url('/assets/img/logo.jpg') }}" alt="Logo Cosec" class="dashboard-logo" />
+                <div class="d-flex">
+                    <!-- Sidebar Logo Container -->
+                    <a href="#" class="logo d-flex logo-container">
+                        <img src="{{ url('/assets/img/event-tech-logo.png') }}" class="dashboard-logo"
+                            style="width: auto; height: 50px;" />
                     </a>
-                    <i class="bi bi-list toggle-sidebar-btn"></i>
+
+                    <!-- Sidebar Toggle Button -->
+                    <i class="bi bi-list toggle-sidebar-btn" id="sidebarToggle"></i>
                 </div>
                 <!-- End Logo -->
 
                 <nav class="header-nav ms-auto">
                     <ul class="d-flex align-items-center">
                         @livewire('notification.index')
-
                         @livewire('message.index')
 
                         <li class="nav-item dropdown pe-3">
                             <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#"
                                 data-bs-toggle="dropdown">
-                                <img src={{ url('/assets/img/default-user.jpg') }} alt="Profile"
-                                    class="rounded-circle" />
+                                @if (Auth()->user()->role == 'super_admin')
+                                    <img src={{ url('/assets/img/admin-default.jpg') }} alt="Profile"
+                                        class="rounded-circle" />
+                                @else
+                                    <img src={{ url('/assets/img/user-default.jpg') }} alt="Profile"
+                                        class="rounded-circle" style="width: 43px; height: 60px;" />
+                                @endif
+
                                 <span class="d-none d-md-block dropdown-toggle ps-2">{{ Auth()->user()->name }}</span>
                             </a>
-                            <!-- End Profile Iamge Icon -->
 
                             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                                 <li class="dropdown-header">
-                                    <img src="{{ url('./assets/img/default-user.jpg') }}" alt="Profile"
-                                        class="rounded-circle mb-2" style="width: 60px; height: 60px;" />
+                                    @if (Auth()->user()->role == 'super_admin')
+                                        <img src="{{ url('./assets/img/admin-default.jpg') }}" alt="Profile"
+                                            class="rounded-circle mb-2" style="width: 60px; height: 60px;" />
+                                    @else
+                                        <img src="{{ url('./assets/img/user-default.jpg') }}" alt="Profile"
+                                            class="rounded-circle mb-2" style="width: 75px; height: 70px;" />
+                                    @endif
+
                                     <h6>{{ Auth()->user()->name }}</h6>
                                     <span
                                         class="text-capitalize">{{ str_replace('_', ' ', Auth()->user()->role) }}</span>
@@ -100,13 +113,13 @@
                                     <hr class="dropdown-divider" />
                                 </li>
 
-                                {{-- <li>
-                                <a class="dropdown-item d-flex align-items-center"
-                                    href="#">
-                                    <i class="bi bi-person"></i>
-                                    <span>My Profile</span>
-                                </a>
-                            </li> --}}
+                                <li>
+                                    <a class="dropdown-item d-flex align-items-center"
+                                        href="{{ route('profileUser.index.show') }}">
+                                        <i class="bi bi-person"></i>
+                                        <span>My Profile</span>
+                                    </a>
+                                </li>
                                 <li>
                                     <hr class="dropdown-divider" />
                                 </li>
@@ -125,14 +138,10 @@
                                     </form>
                                 </li>
                             </ul>
-                            <!-- End Profile Dropdown Items -->
                         </li>
-                        <!-- End Profile Nav -->
                     </ul>
                 </nav>
-                <!-- End Icons Navigation -->
             </header>
-            <!-- End Header -->
 
             <!-- ======= Sidebar ======= -->
             @include('components.sidebar')
@@ -143,12 +152,10 @@
             <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
                     class="bi bi-arrow-up-short"></i></a>
         </div>
-        <!-- End #main -->
 
         <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
                 class="bi bi-arrow-up-short"></i></a>
 
-        <!-- Disable console in browser -->
         <script>
             const isDebug = @json(env('APP_DEBUG'), false);
             if (!isDebug) {
@@ -192,6 +199,40 @@
 
         @stack('script')
 
+        @if (session()->has('toastMessage') && session()->has('toastStatus'))
+            <script>
+                @if (session('toastStatus') === 'success')
+                    iziToast.success({
+                        title: 'Success',
+                        message: '{{ session('toastMessage') }}',
+                        timeout: 2000,
+                        position: 'topRight',
+                    });
+                @elseif (session('toastStatus') === 'error')
+                    iziToast.error({
+                        title: 'Error',
+                        message: '{{ session('toastMessage') }}',
+                        timeout: 2000,
+                        position: 'topRight',
+                    });
+                @elseif (session('toastStatus') === 'info')
+                    iziToast.info({
+                        title: 'Info',
+                        message: '{{ session('toastMessage') }}',
+                        timeout: 2000,
+                        position: 'topRight',
+                    });
+                @elseif (session('toastStatus') === 'warning')
+                    iziToast.warning({
+                        title: 'Warning',
+                        message: '{{ session('toastMessage') }}',
+                        timeout: 2000,
+                        position: 'topRight',
+                    });
+                @endif
+            </script>
+        @endif
+
         @if (session('success'))
             <script>
                 iziToast.success({
@@ -227,28 +268,28 @@
                         iziToast.success({
                             title: 'Success',
                             message: message,
-                            timeout: 7000,
+                            timeout: 2000,
                             position: 'topRight',
                         });
                     } else if (status === 'error') {
                         iziToast.error({
                             title: 'Error',
                             message: message,
-                            timeout: 7000,
+                            timeout: 2000,
                             position: 'topRight',
                         });
                     } else if (status === 'info') {
                         iziToast.info({
                             title: 'Info',
                             message: message,
-                            timeout: 7000,
+                            timeout: 2000,
                             position: 'topRight',
                         });
                     } else if (status === 'warning') {
                         iziToast.warning({
                             title: 'Warning',
                             message: message,
-                            timeout: 7000,
+                            timeout: 2000,
                             position: 'topRight',
                         });
                     }

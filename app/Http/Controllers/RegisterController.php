@@ -11,36 +11,51 @@ use Illuminate\Support\Facades\Log;
 
 class RegisterController extends Controller
 {
-    public function show()
+    public function showRegister()
     {
         return view('pages.auth.register');
     }
 
-    public function register(Request $request)
+    public function postRegister(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255|unique:users,email',
+            'password' => 'required|string',
         ]);
 
         if ($validator->fails()) {
-            return redirect('register')->withErrors($validator)->withInput();
+            if ($validator->errors()->has('email')) {
+                return back()->with([
+                    'toastStatus' => 'error',
+                    'toastMessage' => 'The email address is already registered. Please use another email.',
+                    'toastTimeout' => 1000,
+                ])->withInput();
+            }
         }
 
-        Log::info("Register company by admin");
+        try {
+            // Create the user
+            User::create([
+                'name' => $request->input('name'),
+                'email' => $request->input('email'),
+                'password' => Hash::make($request->input('password')),
+                'role' => 'user',
+                'email_verified_at' => now(),
+            ]);
 
-        // $user = User::create([
-        //     'name' => $request->input('name'),
-        //     'email' => $request->input('email'),
-        //     'password' => Hash::make($request->input('password')),
-        // ]);
-
-        // Auth::login($user);
-
-        // return redirect()->route('dashboard.index.show')->with([
-        //     'toastStatus' => 'success',
-        //     'toastMessage' => 'Registration successful. Welcome!'
-        // ]);
+            return redirect()->route('auth.login.show')->with([
+                'toastStatus' => 'success',
+                'toastMessage' => 'Registration successful. Please login to continue.',
+                'toastTimeout' => 1000,
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Registration error', ['error' => $e->getMessage()]);
+            return back()->with([
+                'toastStatus' => 'error',
+                'toastMessage' => 'An unexpected error occurred. Please try again.',
+                'toastTimeout' => 1000,
+            ])->withInput();
+        }
     }
 }

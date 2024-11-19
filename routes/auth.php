@@ -9,8 +9,8 @@ Route::prefix('auth')->group(function () {
         Route::get('login', [LoginController::class, 'showLogin'])->name('auth.login.show');
         Route::post('login', [LoginController::class, 'postLogin'])->name('auth.login.post');
 
-        Route::get('/register', [RegisterController::class, 'show'])->name('auth.register.show');
-        Route::post('/register', [RegisterController::class, 'register'])->name('auth.register.post');
+        Route::get('/register', [RegisterController::class, 'showRegister'])->name('auth.register.show');
+        Route::post('/register', [RegisterController::class, 'postRegister'])->name('auth.register.post');
 
         Route::get('forgot-password', [LoginController::class, 'postLogin'])->name('auth.forgot-password.show');
     });
