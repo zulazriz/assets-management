@@ -65,7 +65,7 @@ class LoginController extends Controller
 
         // $JWTtoken = $user->createToken('Cosec')->plainTextToken;
         $abilities = [$user->role];
-        $JWTtoken = $user->createToken('Cosec', $abilities)->plainTextToken;
+        $JWTtoken = $user->createToken('EventTech', $abilities)->plainTextToken;
 
         Log::info('JWT Token created for user: ' . $user->email . ' | User ID: ' . $user->id . ' | User Role: ' . $user->role . ' | Token: ' . $JWTtoken);
 

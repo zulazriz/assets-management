@@ -5,13 +5,12 @@
         <meta charset="utf-8">
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-        <title>Cosec | @yield('title')</title>
+        <title>@yield('title')</title>
         <meta content="" name="description">
         <meta content="" name="keywords">
 
         <!-- Favicons -->
-        <link href={{ url('/assets/img/favicon.png') }} rel="icon">
-        <link href={{ url('/assets/img/apple-touch-icon.png') }} rel="apple-touch-icon">
+        <link href={{ url('/assets/img/icon-event-tech.png') }} rel="icon">
 
         <!-- Google Fonts -->
         <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -74,28 +73,28 @@
                     iziToast.success({
                         title: 'Success',
                         message: '{{ session('toastMessage') }}',
-                        timeout: 7000,
+                        timeout: 2000,
                         position: 'topRight',
                     });
                 @elseif (session('toastStatus') === 'error')
                     iziToast.error({
                         title: 'Error',
                         message: '{{ session('toastMessage') }}',
-                        timeout: 7000,
+                        timeout: 2000,
                         position: 'topRight',
                     });
                 @elseif (session('toastStatus') === 'info')
                     iziToast.info({
                         title: 'Info',
                         message: '{{ session('toastMessage') }}',
-                        timeout: 7000,
+                        timeout: 2000,
                         position: 'topRight',
                     });
                 @elseif (session('toastStatus') === 'warning')
                     iziToast.warning({
                         title: 'Warning',
                         message: '{{ session('toastMessage') }}',
-                        timeout: 7000,
+                        timeout: 2000,
                         position: 'topRight',
                     });
                 @endif
