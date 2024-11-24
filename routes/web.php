@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Assets\AssetsController;
 use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
 use App\Http\Controllers\RegisterController;
@@ -28,9 +29,8 @@ Livewire::setScriptRoute(function ($handle) {
     return Route::get(trim(parse_url(config('app.url'), PHP_URL_PATH), '/') . '/assets/vendor/livewire/livewire.js', $handle);
 });
 
-// // Add this route for user registration
-// Route::get('auth/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
-// Route::post('auth/register', [RegisterController::class, 'register']);
+Route::get('/assets/index', [AssetsController::class, 'showIndex'])->name('assets.index');
+
 
 include 'auth.php';
 include 'user.php';

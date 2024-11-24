@@ -24,8 +24,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Define gates for different roles
-        Gate::define('schedule', function (User $user) {
+        Gate::define('assets', function (User $user) {
             return in_array($user->role, ['super_admin', 'user']);
         });
     }

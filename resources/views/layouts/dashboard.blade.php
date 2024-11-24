@@ -10,7 +10,7 @@
         <meta content="" name="keywords">
 
         <!-- Favicons -->
-        <link href={{ url('/assets/img/icon-event-tech.png') }} rel="icon">
+        <link href={{ url('/assets/img/aspiro-icon.ico') }} rel="icon">
 
         <!-- Google Fonts -->
         <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -66,7 +66,7 @@
                 <div class="d-flex">
                     <!-- Sidebar Logo Container -->
                     <a href="#" class="logo d-flex logo-container">
-                        <img src="{{ url('/assets/img/event-tech-logo.png') }}" class="dashboard-logo"
+                        <img src="{{ url('/assets/img/aspiro-logo.jpg') }}" class="dashboard-logo"
                             style="width: auto; height: 50px;" />
                     </a>
 
@@ -77,8 +77,8 @@
 
                 <nav class="header-nav ms-auto">
                     <ul class="d-flex align-items-center">
-                        @livewire('notification.index')
-                        @livewire('message.index')
+                        {{-- @livewire('notification.index')
+                        @livewire('message.index') --}}
 
                         <li class="nav-item dropdown pe-3">
                             <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#"
@@ -113,13 +113,13 @@
                                     <hr class="dropdown-divider" />
                                 </li>
 
-                                <li>
+                                {{-- <li>
                                     <a class="dropdown-item d-flex align-items-center"
                                         href="{{ route('profileUser.index.show') }}">
                                         <i class="bi bi-person"></i>
                                         <span>My Profile</span>
                                     </a>
-                                </li>
+                                </li> --}}
                                 <li>
                                     <hr class="dropdown-divider" />
                                 </li>
@@ -296,6 +296,12 @@
                 });
             });
         </script>
+
+        <!-- Load html2pdf.js -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+
+        {{-- QRious --}}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
 
         <!-- jQuery -->
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>

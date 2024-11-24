@@ -1,0 +1,32 @@
+* {
+  font-size: 14px;
+}
+
+.footer-copyright {
+  text-align: center;
+  color: #b5b5c3;
+}
+
+.totalAssets {
+  background-color: #6f6cf0;
+  color: #fff;
+}
+
+.totalLaptops {
+  background-color: #3399ff;
+  color: #fff;
+}
+
+.totalDesktops {
+  background-color: #f5cf27;
+  color: #fff;
+}
+
+.totalUsers {
+  background-color: #f56666;
+  color: #fff;
+}
+
+.total {
+  color: #fff;
+}

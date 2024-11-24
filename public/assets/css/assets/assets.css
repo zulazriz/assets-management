@@ -1,0 +1,146 @@
+* {
+  font-size: 14px;
+}
+
+.footer-copyright {
+  text-align: center;
+  color: #b5b5c3;
+}
+
+.table thead th td {
+  text-transform: uppercase;
+  font-size: 14px;
+  text-align: center;
+}
+
+#assetsTable th {
+  font-size: 14px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+#assetsTable td {
+  font-size: 14px;
+  text-align: center;
+}
+
+.btn {
+  font-size: 14px;
+}
+
+.small-circle-btn {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  border: none;
+}
+
+#view-assets {
+  background-color: #3ec9d6;
+}
+
+#edit-assets {
+  background-color: #6fd843;
+}
+
+#delete-assets {
+  background-color: #ff3a6e;
+  color: #ffffff;
+}
+
+/* ======================== DATATABLE ======================== */
+.dataTables_wrapper .dataTables_filter,
+.dataTables_wrapper .dataTables_info,
+.dataTables_wrapper .dataTables_length {
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.dataTables_wrapper .dataTables_sort,
+.dataTables_wrapper .dataTables_scrollBody {
+  display: none;
+}
+
+.pagination {
+  margin-top: 20px; /* Space above pagination */
+}
+
+.pagination button {
+  padding: 0.25rem 0.5rem; /* Smaller padding for compact buttons */
+  margin: 0 2px; /* Space between buttons */
+  font-size: 0.875rem; /* Smaller font size */
+}
+
+.pagination .dots {
+  margin: 0 5px; /* Space around dots */
+  font-weight: bold; /* Make the dots bold */
+}
+
+/* Remove vertical lines and keep horizontal lines */
+table.dataTable th,
+table.dataTable td {
+  border: none; /* Remove all borders */
+}
+
+/* Add only horizontal borders */
+table.dataTable th {
+  border-bottom: 2px solid #dee2e6; /* Bottom border for header */
+}
+
+table.dataTable td {
+  border-bottom: 1px solid #dee2e6; /* Bottom border for data cells */
+}
+
+/* Optional: Change the text color for better visibility */
+table.dataTable th {
+  color: #343a40; /* Darker text color for the header */
+}
+/* ======================== DATATABLE ======================== */
+
+/* ======================== BLUR MODAL======================== */
+/* Apply blur to the body when the modal is open */
+body.modal-open {
+  overflow: hidden; /* Prevent scrolling when modal is open */
+}
+
+/* Apply blur only to the body */
+body.modal-open::before {
+  content: "";
+  position: fixed; /* Make it fixed to cover the entire viewport */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Optional: Dark overlay */
+  backdrop-filter: blur(5px); /* Adjust the blur effect */
+  z-index: 1040; /* Ensure it stays behind the modal */
+  pointer-events: none; /* Allow clicks to pass through */
+}
+
+/* Ensure modal backdrop is semi-transparent */
+.modal-backdrop {
+  background-color: rgba(0, 0, 0, 0.8); /* Dark semi-transparent background */
+  transition: background-color 0.2s ease; /* Smooth transition for backdrop color */
+}
+
+/* Make sure the modal content is not affected by the blur */
+.modal-content {
+  filter: none; /* Ensure modal content is clear */
+  position: relative; /* Position relative to allow stacking context */
+  z-index: 1050; /* Ensure it stays above the blurred background */
+}
+
+.modal.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.modal {
+  opacity: 0;
+  transform: translateY(-10px); /* Start slightly above */
+}
+/* ======================== BLUR MODAL======================== */

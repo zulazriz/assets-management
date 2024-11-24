@@ -16,7 +16,7 @@
                                 <div class="card-body">
                                     <div class="d-flex justify-content-center">
                                         <a href="index.html" class="logo d-flex align-items-center w-auto">
-                                            <img src={{ url('/assets/img/event-tech-logo.png') }} alt="">
+                                            <img src={{ url('/assets/img/aspiro-logo.jpg') }} alt="">
                                         </a>
                                     </div>
 

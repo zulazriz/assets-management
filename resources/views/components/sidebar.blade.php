@@ -7,14 +7,6 @@
                 <span>Dashboard</span>
             </a>
         </li>
-        @can('schedule')
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="{{ route('mySchedule.index.show') }}">
-                    <i class="bi bi-calendar2-week-fill"></i>
-                    <span>My Schedule</span>
-                </a>
-            </li>
-        @endcan
         @can('crm')
             <!-- CRM Section -->
             <li class="nav-item">
@@ -113,14 +105,14 @@
                 </ul>
             </li>
         @endcan
-        {{-- @can('marketplace_rsa')
+        @can('assets')
             <li class="nav-item">
-                <a class="nav-link collapsed" href="{{ route('marketplace.rsa') }}">
-                    <i class="bi bi-shop-window"></i>
-                    <span>Marketplace RSA</span>
+                <a class="nav-link collapsed" href="{{ route('assets.index') }}">
+                    <i class="bi bi-laptop-fill"></i>
+                    <span>Assets</span>
                 </a>
             </li>
-        @endcan --}}
+        @endcan
     </ul>
 </aside>
 

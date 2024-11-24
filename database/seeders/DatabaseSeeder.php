@@ -24,12 +24,6 @@ class DatabaseSeeder extends Seeder
         $this->call([
             AdminSeeder::class,
             UsersTableSeeder::class,
-            AccountTypeSeeder::class,
-            CountriesSeeder::class,
-            LeadTypeSeeder::class,
-            LeadSourceSeeder::class,
-            LeadStatusSeeder::class,
-            LeadsSeeder::class,
         ]);
     }
 }

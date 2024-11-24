@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Assets\AssetsController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,5 +21,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::prefix('v1')->group(function () {
-  
+    // Dashboard
+    Route::get('/dashboard/get-details-dashboard', [DashboardController::class, 'getDetailsDashboard']);
+
+    // Assets
+    Route::post('/assets/add-assets', [AssetsController::class, 'addAssets']);
+    Route::get('/assets/get-assets-details/{assets_id}', [AssetsController::class, 'getAssetsDetails']);
+    Route::post('/assets/edit-assets-details/{assets_id}', [AssetsController::class, 'editAssetsDetails']);
+    Route::delete('/assets/delete-assets/{assets_id}', [AssetsController::class, 'deleteAssets']);
 });

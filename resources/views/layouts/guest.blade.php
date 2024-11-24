@@ -10,7 +10,7 @@
         <meta content="" name="keywords">
 
         <!-- Favicons -->
-        <link href={{ url('/assets/img/icon-event-tech.png') }} rel="icon">
+        <link href={{ url('/assets/img/aspiro-icon.ico') }} rel="icon">
 
         <!-- Google Fonts -->
         <link href="https://fonts.gstatic.com" rel="preconnect">
